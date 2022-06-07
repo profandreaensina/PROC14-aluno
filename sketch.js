@@ -44,9 +44,8 @@ function setup() {
   soloInvisivel = createSprite(200,190,400,10);
   soloInvisivel.visible = false;
   
-  //crie Grupos de Obstáculos e Nuvens
-  grupoCactos = createGroup();
-  grupoNuvens = createGroup();
+  //01 crie Grupos de Obstáculos e Nuvens
+  
   
   console.log("Hello" + 5);
   
@@ -55,10 +54,9 @@ function setup() {
 
 function draw() {
   background(180);
-  //exibindo pontuacãO
-  text("Score: "+ pontos, 500,50);
   
-  
+  //02 exibindo pontuacãO
+
   
   if(estadoJogo === PLAY){
     //mover o solo
@@ -71,7 +69,7 @@ function draw() {
     }
     
     //pular quando a tecla de espaço for pressionada
-    if(keyDown("space")&& trex.y >= 100) {
+    if(keyDown("space")&& trex.y >= 150) {
         trex.velocityY = -13;
     }
     
@@ -106,7 +104,7 @@ function draw() {
 
 function criarCactos(){
  if (frameCount % 60 === 0){
-   var cacto = createSprite(400,165,10,40);
+   var cacto = createSprite(615,165,10,40);
    cacto.velocityX = -6;
    
     //gerar obstáculos aleatórios
@@ -127,13 +125,12 @@ function criarCactos(){
       default: break;
     }
    
-    //atribuir escala e vida útil ao obstáculo       
     cacto.scale = 0.5;
     cacto.lifetime = 300;
    
    //adicione cada obstáculo ao grupo
-    grupoCactos.add(cacto);
- }
+   
+  }
 }
 
 function criarNuvens() {
@@ -144,16 +141,14 @@ function criarNuvens() {
         nuvem.addImage(imagemNuvem);
         nuvem.scale = 0.5;
         nuvem.velocityX = -3;
-        
-        //atribuir vida útil à variável
-        nuvem.lifetime = 134;
-        
-        //ajustar a profundidade
+
+        nuvem.lifetime = 220;
+ 
         nuvem.depth = trex.depth;
         trex.depth = trex.depth + 1;
         
         //adicionando nuvem ao grupo
-      grupoNuvens.add(nuvem);
+      
     }
 }
 
